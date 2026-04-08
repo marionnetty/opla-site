@@ -478,8 +478,9 @@
         align-items: flex-start; gap: 20px; padding: 0 0 32px;
       }
       .step:not(:last-child)::after {
-        content: ''; position: absolute; left: 18px; top: 52px; bottom: 0;
+        content: ''; position: absolute; left: 24px; top: 48px; bottom: 0;
         width: 1px; background: var(--lav-light);
+        transform: translateX(-50%);
       }
     }
     .step-num {
@@ -1013,6 +1014,64 @@
     /* Quand le filtre est actif, la carte featured perd son span 2 si seule */
     .projets-grid.filtered .pc.featured {
       grid-column: span 1;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       ONGLETS MÉTHODE
+    ═══════════════════════════════════════════════ */
+    .methode-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 40px;
+    }
+    .methode-tab {
+      background: var(--glass);
+      border: 1px solid var(--gb);
+      border-radius: var(--r-p);
+      padding: 12px 26px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.22s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
+    }
+    .methode-tab:hover {
+      border-color: var(--cta);
+      color: var(--cta-deep);
+      transform: translateY(-1px);
+    }
+    .methode-tab.active {
+      background: var(--cta);
+      border-color: var(--cta);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(79,162,152,0.35);
+    }
+
+    .methode-panel {
+      display: none;
+    }
+    .methode-panel.active {
+      display: block;
+      animation: panelIn 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .methode-panel-sub {
+      font-size: 16px; color: var(--ink-soft);
+      line-height: 1.75; font-weight: 300;
+      max-width: 640px;
+      margin-bottom: 48px;
+      padding: 20px 24px;
+      background: var(--glass);
+      border: 1px solid var(--gb);
+      border-radius: var(--r-md);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
     }
 
   </style>
@@ -1634,116 +1693,140 @@
         <h2 class="section-title tw-title">Un process <em>clair,</em><br>zéro surprise</h2>
         <p class="section-intro reveal-right">Je ne livre pas des fichiers, je construis une solution. Voilà comment on travaille ensemble.</p>
       </div>
-      <div class="steps-row">
-        <div class="step reveal d1">
-          <div class="step-num">01</div>
-          <div>
-            <div class="step-title">Brief & découverte</div>
-            <p class="step-desc">On échange sur tes objectifs, ta cible, tes contraintes. Je pose les vraies questions.</p>
-          </div>
-        </div>
-        <div class="step reveal d2">
-          <div class="step-num">02</div>
-          <div>
-            <div class="step-title">Stratégie & cadrage</div>
-            <p class="step-desc">Analyse de l'existant, benchmark, définition des KPIs. On pose les bases avant de toucher aux pixels.</p>
-          </div>
-        </div>
-        <div class="step reveal d3">
-          <div class="step-num">03</div>
-          <div>
-            <div class="step-title">Conception & design</div>
-            <p class="step-desc">Wireframes, maquettes, itérations. Tu valides à chaque étape · pas de mauvaise surprise.</p>
-          </div>
-        </div>
-        <div class="step reveal d4">
-          <div class="step-num">04</div>
-          <div>
-            <div class="step-title">Tests & optimisation</div>
-            <p class="step-desc">Tests utilisateurs, A/B testing. On mesure, on ajuste, on améliore en continu.</p>
-          </div>
-        </div>
-        <div class="step reveal d5">
-          <div class="step-num">05</div>
-          <div>
-            <div class="step-title">Livraison & suivi</div>
-            <p class="step-desc">Fichiers organisés, documentation claire. Et je reste disponible après la livraison.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══ INVESTISSEMENT ══════════════════════════ -->
-  <section id="invest">
-    <div class="invest-wrap">
-      <div class="invest-card reveal">
-        <span class="section-label" style="display:block;margin-bottom:20px;">Parlons valeur</span>
-        <h2 class="invest-quote tw-title">
-          Ce n'est pas une dépense.<br>C'est un <em>investissement.</em>
-        </h2>
-        <p class="invest-body">
-          Mes services ne sont pas une ligne de budget à compresser. Chaque euro investi dans un design pensé, une interface fluide ou une stratégie de conversion optimisée · c'est du revenu en plus, des clients qui restent, <strong>une marque qui inspire confiance.</strong>
-          <br><br>
-          Je ne livre pas des fichiers. Je construis des expériences qui font rester, qui font agir, qui font revenir.
-        </p>
-        <p class="invest-tagline">Et si on construisait quelque chose qui dure ?</p>
-        <a href="https://calendly.com/TON-LIEN" target="_blank" rel="noopener" class="btn-primary">
-          Réserver un appel gratuit →
-        </a>
+      <!-- Onglets -->
+      <div class="methode-tabs reveal">
+        <button class="methode-tab active" data-tab="web">Web design</button>
+        <button class="methode-tab" data-tab="creatif">Projet créatif</button>
+        <button class="methode-tab" data-tab="community">Community management</button>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ TIKTOK ═══════════════════════════════════ -->
-  <section id="tiktok">
-    <div class="tiktok-wrap">
-      <div class="section-header reveal">
-        <span class="section-label">En coulisses</span>
-        <h2 class="section-title tw-title">Le design,<br><em>sans filtre</em></h2>
-        <p class="section-intro">Des vidéos courtes sur le design, l'UX, la conversion · et ce que personne ne dit vraiment dans ce métier.</p>
-      </div>
-      <div class="tiktok-grid">
-        <!-- Pour intégrer tes TikToks, remplace le contenu .tk-thumb par l'embed officiel TikTok -->
-        <div class="tk-card reveal d1">
-          <div class="tk-thumb">
-            <span>🎬</span>
-            Colle ici ton embed TikTok
-            <div class="tk-play">▶</div>
+      <!-- Panneau Web design -->
+      <div class="methode-panel active" id="tab-web">
+        <p class="methode-panel-sub">Pour ta boutique en ligne, ton site vitrine ou ta page de vente. Que tu partes de zéro ou qu'on optimise ensemble ce que tu as déjà.</p>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-title">Brief & découverte</div>
+              <p class="step-desc">On échange sur tes objectifs, ta cible, tes contraintes. Je pose les vraies questions.</p>
+            </div>
           </div>
-          <div class="tk-info">
-            <div class="tk-title">Titre de ta vidéo TikTok</div>
-            <div class="tk-views">xxx vues</div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-title">Stratégie & cadrage</div>
+              <p class="step-desc">Analyse de l'existant, benchmark, définition des KPIs. On pose les bases avant de toucher aux pixels.</p>
+            </div>
           </div>
-        </div>
-        <div class="tk-card reveal d2">
-          <div class="tk-thumb">
-            <span>🎬</span>
-            Colle ici ton embed TikTok
-            <div class="tk-play">▶</div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-title">Conception & design</div>
+              <p class="step-desc">Wireframes, maquettes, itérations. Tu valides à chaque étape, pas de mauvaise surprise.</p>
+            </div>
           </div>
-          <div class="tk-info">
-            <div class="tk-title">Titre de ta vidéo TikTok</div>
-            <div class="tk-views">xxx vues</div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <div class="step-title">Tests & optimisation</div>
+              <p class="step-desc">Tests utilisateurs, A/B testing. On mesure, on ajuste, on améliore en continu.</p>
+            </div>
           </div>
-        </div>
-        <div class="tk-card reveal d3">
-          <div class="tk-thumb">
-            <span>🎬</span>
-            Colle ici ton embed TikTok
-            <div class="tk-play">▶</div>
-          </div>
-          <div class="tk-info">
-            <div class="tk-title">Titre de ta vidéo TikTok</div>
-            <div class="tk-views">xxx vues</div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div>
+              <div class="step-title">Livraison & suivi</div>
+              <p class="step-desc">Fichiers organisés, documentation claire. Et je reste disponible après la livraison.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="tiktok-footer reveal">
-        <a href="https://tiktok.com/@TON-COMPTE" target="_blank" rel="noopener" class="btn-ghost">
-          Voir tous mes TikToks →
-        </a>
+
+      <!-- Panneau Projet créatif -->
+      <div class="methode-panel" id="tab-creatif">
+        <p class="methode-panel-sub">Identité visuelle, branding, supports print ou digitaux. On construit une image forte qui te ressemble et qui marque les esprits.</p>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-title">Exploration & inspiration</div>
+              <p class="step-desc">On définit ensemble ton univers, tes références, ce qui te différencie. Le brief créatif qui pose tout.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-title">Direction artistique</div>
+              <p class="step-desc">Je te propose une ou deux pistes créatives : ambiance, typographie, palette. Tu choisis la direction.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-title">Création & itérations</div>
+              <p class="step-desc">Je conçois, tu donnes ton retour, on affine. Jusqu'à ce que ce soit exactement ce qu'il faut.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <div class="step-title">Déclinaisons</div>
+              <p class="step-desc">Le design est adapté à tous tes supports : réseaux, print, web. Cohérence garantie partout.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div>
+              <div class="step-title">Livraison des fichiers</div>
+              <p class="step-desc">Tous les formats dont tu as besoin, organisés et prêts à l'emploi. Plus un guide d'utilisation si besoin.</p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Panneau Community management -->
+      <div class="methode-panel" id="tab-community">
+        <p class="methode-panel-sub">Une présence en ligne cohérente qui engage et fidélise. Je gère ta communauté comme si c'était la mienne.</p>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-title">Audit & stratégie</div>
+              <p class="step-desc">On analyse tes réseaux actuels, ta cible, tes concurrents. Je construis une stratégie de contenu sur mesure.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-title">Ligne éditoriale</div>
+              <p class="step-desc">Définition du ton, des thématiques, du rythme de publication. Ton identité se lit dans chaque post.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-title">Création de contenu</div>
+              <p class="step-desc">Visuels, captions, stories, reels. Je produis du contenu qui performe et qui ressemble à ta marque.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <div class="step-title">Publication & animation</div>
+              <p class="step-desc">Je publie, je réponds, j'anime. Ta communauté est entre de bonnes mains.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div>
+              <div class="step-title">Reporting mensuel</div>
+              <p class="step-desc">Un bilan clair chaque mois : ce qui a marché, ce qu'on ajuste, les prochains objectifs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1846,7 +1929,6 @@
       <span class="footer-copy">© 2025 Opla · Tous droits réservés</span>
       <div class="footer-links">
         <a href="#">Mentions légales</a>
-        <a href="https://tiktok.com/@TON-COMPTE" target="_blank" rel="noopener">TikTok</a>
         <a href="https://linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
@@ -2168,6 +2250,18 @@
             featured.style.gridColumn = visibles.length <= 2 ? 'span 1' : 'span 2';
           }
         }
+      });
+    });
+
+    /* ─────────────────────────────────────────────
+       ONGLETS MÉTHODE
+    ───────────────────────────────────────────── */
+    document.querySelectorAll('.methode-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.methode-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.methode-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
       });
     });
 
